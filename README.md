@@ -1,2 +1,2 @@
 # ProductTrackerApplication
-An application for telenor using spring boot rest application with JPA
+An application for searching product detail (t e l e n o r) using spring boot rest application with JPA
