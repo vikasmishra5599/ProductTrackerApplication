@@ -1,30 +1,37 @@
 package com.test.SpringBootApplication.service;
 
-import com.test.SpringBootApplication.dao.ProductDao;
-import com.test.SpringBootApplication.entity.Product;
+import com.test.SpringBootApplication.dao.ProductAbstractDao;
+import com.test.SpringBootApplication.dao.entity.Product;
+import com.test.SpringBootApplication.model.ProductRequest;
+import com.test.SpringBootApplication.model.ProductResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.commons.collections4.CollectionUtils.size;
 
 @Service
 public class ProductService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
-    private ProductDao productDao;
+    private ProductAbstractDao productAbstractDao;
 
     @Autowired
-    public ProductService(ProductDao productDao) {
-        this.productDao = productDao;
+    public ProductService(ProductAbstractDao productAbstractDao) {
+        this.productAbstractDao = productAbstractDao;
     }
 
-    public List<Product> getAllProducts() {
-        List<Product> products = new ArrayList<>();
-         productDao.findAll().forEach(product -> products.add(product));
-         return products;
+    public ProductResponse findAllProducts() {
+        return new ProductResponse(productAbstractDao.findAll());
+    }
 
+    public ProductResponse findProducts(ProductRequest request) {
+        List<Product> results = productAbstractDao.findProductBasedOnFilter(request);
+
+        LOG.info("Request processed successfully and found [{}] product for request [{}] ", size(results), request);
+        return new ProductResponse(results);
     }
 }

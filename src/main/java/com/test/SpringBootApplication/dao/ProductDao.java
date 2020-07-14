@@ -1,7 +1,10 @@
 package com.test.SpringBootApplication.dao;
 
-import com.test.SpringBootApplication.entity.Product;
-import org.springframework.data.repository.CrudRepository;
+import com.test.SpringBootApplication.dao.entity.Product;
+import com.test.SpringBootApplication.model.ProductRequest;
 
-public interface ProductDao extends CrudRepository<Product, Long> {
+import java.util.List;
+
+public interface ProductDao {
+    List<Product> findProductBasedOnFilter(ProductRequest productRequest);
 }

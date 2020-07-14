@@ -1,13 +1,17 @@
 package com.test.SpringBootApplication.enricher;
 
 import com.opencsv.CSVReader;
-import com.test.SpringBootApplication.entity.Product;
+import com.test.SpringBootApplication.dao.entity.Product;
 
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.test.SpringBootApplication.model.PropertyType.COLOR;
+import static com.test.SpringBootApplication.model.PropertyType.GB_LIMIT;
+import static java.util.Objects.isNull;
 
 public class ReadFromCSVUtil {
 
@@ -29,17 +33,31 @@ public class ReadFromCSVUtil {
         Product product = new Product();
         for (int i = 0; i < productRow.length; i++) {
 
-            product.setProductType(productRow[0]);
+            product.setType(productRow[0]);
 
-            String property = productRow[1];
-            String[] propertyDetails = property.split(":");
-            product.setPropertyType(propertyDetails[0]);
-            product.setPropertyValue(propertyDetails[1]);
+            setProperties(productRow[1], product);
 
             product.setPrice(Double.parseDouble(productRow[2]));
-            product.setPriceType("Min");
             product.setAddress(productRow[3]);
         }
         return product;
+    }
+
+    private static void setProperties(String property, Product product) {
+        String[] propertyDetails = property.split(":");
+        String propertyType = propertyDetails[0];
+        String propertyValue = propertyDetails[1];
+
+        if (isNull(propertyType) || isNull(propertyValue)) {
+            return;
+        }
+
+        if (COLOR.getValue().equalsIgnoreCase(propertyType)) {
+            product.setColor(propertyValue);
+        }
+
+        if (GB_LIMIT.getValue().equalsIgnoreCase(propertyType)) {
+            product.setGblimit(Integer.parseInt(propertyValue));
+        }
     }
 }

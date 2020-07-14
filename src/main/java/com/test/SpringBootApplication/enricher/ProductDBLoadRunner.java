@@ -1,7 +1,7 @@
 package com.test.SpringBootApplication.enricher;
 
-import com.test.SpringBootApplication.dao.ProductDao;
-import com.test.SpringBootApplication.entity.Product;
+import com.test.SpringBootApplication.dao.ProductAbstractDao;
+import com.test.SpringBootApplication.dao.entity.Product;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +17,11 @@ import static com.test.SpringBootApplication.enricher.ReadFromCSVUtil.readFromCS
 public class ProductDBLoadRunner implements CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProductDBLoadRunner.class);
-    private ProductDao productDao;
+    private ProductAbstractDao productAbstractDao;
 
     @Autowired
-    public ProductDBLoadRunner(ProductDao productDao) {
-        this.productDao = productDao;
+    public ProductDBLoadRunner(ProductAbstractDao productAbstractDao) {
+        this.productAbstractDao = productAbstractDao;
     }
 
     @Override
@@ -30,13 +30,12 @@ public class ProductDBLoadRunner implements CommandLineRunner {
         try {
             List<Product> products = readFromCSVFile("data.csv");
 
-            products.forEach(product -> productDao.save(product));
+            products.forEach(product -> productAbstractDao.save(product));
 
-            int size = CollectionUtils.size(productDao.findAll());
+            int size = CollectionUtils.size(productAbstractDao.findAll());
             LOG.info("Record save in DB count [{}]", size);
         } catch (Exception e) {
             LOG.warn("An error occurred while saving record in Db", e);
         }
     }
-
 }

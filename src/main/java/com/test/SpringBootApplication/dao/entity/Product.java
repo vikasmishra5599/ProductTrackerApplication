@@ -1,4 +1,4 @@
-package com.test.SpringBootApplication.entity;
+package com.test.SpringBootApplication.dao.entity;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
@@ -13,13 +13,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String productType;
+    private String type;
 
-    private String propertyType;
+    private String color;
 
-    private String propertyValue;
-
-    private String priceType;
+    private Integer gblimit;
 
     private Double price;
 
@@ -33,36 +31,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductType() {
-        return productType;
+    public String getType() {
+        return type;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getPropertyType() {
-        return propertyType;
+    public String getColor() {
+        return color;
     }
 
-    public void setPropertyType(String propertyType) {
-        this.propertyType = propertyType;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getPropertyValue() {
-        return propertyValue;
+    public Integer getGblimit() {
+        return gblimit;
     }
 
-    public void setPropertyValue(String propertyValue) {
-        this.propertyValue = propertyValue;
-    }
-
-    public String getPriceType() {
-        return priceType;
-    }
-
-    public void setPriceType(String priceType) {
-        this.priceType = priceType;
+    public void setGblimit(Integer gblimit) {
+        this.gblimit = gblimit;
     }
 
     public Double getPrice() {
