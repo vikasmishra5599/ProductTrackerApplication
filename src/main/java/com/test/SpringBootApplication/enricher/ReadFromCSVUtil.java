@@ -3,9 +3,8 @@ package com.test.SpringBootApplication.enricher;
 import com.opencsv.CSVReader;
 import com.test.SpringBootApplication.dao.entity.Product;
 
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import org.springframework.core.io.ClassPathResource;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,10 +15,10 @@ import static java.util.Objects.isNull;
 public class ReadFromCSVUtil {
 
     public static List<Product> readFromCSVFile(String fileName) throws Exception {
-        Reader reader = Files.newBufferedReader(Paths.get(
-                ClassLoader.getSystemResource(fileName).toURI()));
+        InputStreamReader inputStreamReader = new InputStreamReader(
+                new ClassPathResource(fileName).getInputStream());
+        CSVReader csvReader = new CSVReader(inputStreamReader);
 
-        CSVReader csvReader = new CSVReader(reader);
         return mapToProducts(csvReader.readAll());
     }
 
