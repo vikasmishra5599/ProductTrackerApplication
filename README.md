@@ -25,9 +25,15 @@ docker run -p 8080:8080 -d product-tracker-app:1.0
 
 **Note:**
 
-docker ps -a                  _**To view containers detail**_
+docker ps -a                        _**To view containers detail**_
 
-docker stop _CONTAINER_ID_    _**To stop container**_ 
+docker stop _CONTAINER_ID_          _**To stop container**_ 
+
+
+
+###### In case, maven is not installed, we can run app directly from docker:: 
+
+docker run -it --rm --name my-maven-project -p 8080:8080 -v "$PWD":/usr/src/app  -v "$HOME"/.m2:/root/.m2 -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
 
 
 ##### Endpoints
