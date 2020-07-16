@@ -31,9 +31,11 @@ docker stop _CONTAINER_ID_          _**To stop container**_
 
 
 
-###### In case, maven is not installed, we can run app directly from docker:: 
+##### In case, maven is not installed, we can run app directly from docker:: 
 
-docker run -it --rm --name my-maven-project -p 8080:8080 -v "$PWD":/usr/src/app  -v "$HOME"/.m2:/root/.m2 -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
+docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
+
+docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -v "$HOME"/.m2:/root/.m2 -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
 
 
 ##### Endpoints
@@ -42,14 +44,14 @@ http://localhost:8080/     <For Healthcheck>
 
 **GET /product**
 
-**Query Parameter**		**Description**
+**Query Parameter**		    **Description**
 
-1. type					The product type. (String. Can be 'phone' or 'subscription')
-2. min_price				The minimum price in SEK. (Number)
-3. max_price				The maximum price in SEK. (Number)
-4. city					The city in which a store is located. (String)
-5. property				The name of the property. (String. Can be 'color' or 'gb_limit')
-6. property:color			The color of the phone. (String)
+1. type				          	The product type. (String. Can be 'phone' or 'subscription')
+2. min_price	  		    	The minimum price in SEK. (Number)
+3. max_price		  	    	The maximum price in SEK. (Number)
+4. city					          The city in which a store is located. (String)
+5. property			         	The name of the property. (String. Can be 'color' or 'gb_limit')
+6. property:color			    The color of the phone. (String)
 7. property:gb_limit_min 	The minimum GB limit of the subscription. (Number)
 8. property:gb_limit_max 	The maximum GB limit of the subscription. (Number)
 
