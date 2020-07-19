@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-tracker-app
+spec:
+  selector:
+    matchLabels:
+      app: product-tracker-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: product-tracker-app
+    spec:
+      containers:
+        - name: product-tracker-app
+          image: vikas5misra/spring-boot-rest-api
+          ports:
+            - containerPort: 8080
+              name: server
+            - containerPort: 8081
+              name: management
