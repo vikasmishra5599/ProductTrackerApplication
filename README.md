@@ -16,23 +16,11 @@ mvn spring-boot:run
 ### Build docker image
 docker build . --tag product-tracker-app:1.0
 
-##### Run an image
+### Run an image
 docker run -p 8080:8080 product-tracker-app:1.0
-
-##### Run an image in detached mode
-
-docker run -p 8080:8080 -d product-tracker-app:1.0
-
-**Note:**
-
-docker ps -a                           _**To view containers detail**_
-
-docker stop _CONTAINER_ID_             _**To stop container**_ 
 
 
 ##### In case, maven is not installed, we can run app directly from docker:: 
-
-docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
 
 docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -v "$HOME"/.m2:/root/.m2 -w /usr/src/app maven:3.6.3-openjdk-14-slim mvn spring-boot:run
 
@@ -40,14 +28,17 @@ docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -v "
 Have uploaded docker image to dockerhub  (https://hub.docker.com/repository/docker/vikas5misra/spring-boot-rest-api)
 
 **Create deployment**
+
 kubectl apply -f deploy/deployment.yml
 kubectl get deployments
 
 **Create service**
+
 kubectl apply -f deploy/service.yml
 kubectl get services
 
 minikube dashboard
+
 kubectl get pods
 
 kubectl expose deployment product-tracker-app --type=LoadBalancer --port=8080
