@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.test.SpringBootApplication.controller.RequestProcessor.validateAndMapToRequest;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/")
 public class ProductController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProductController.class);
@@ -31,12 +31,6 @@ public class ProductController {
     public ResponseEntity healthCheck() {
         LOG.info("Received request to show complete product list");
         return ResponseEntity.ok("Application is running fine.");
-    }
-
-    @GetMapping("products")
-    public ProductResponse getProducts() {
-        LOG.info("Received request to show complete product list");
-        return productService.findAllProducts();
     }
 
     @GetMapping("product")

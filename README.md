@@ -64,3 +64,10 @@ http://localhost:8080/     <For Healthcheck>
 
 
 Example: GET /product?type=subscription&max_price=1000&city=Stockholm
+
+
+#### To run with frontend
+
+mvn spring-boot:run
+
+localhost:8080/home
