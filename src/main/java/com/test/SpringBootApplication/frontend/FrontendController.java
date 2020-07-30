@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FrontendController {
 
-    @GetMapping({"/home", "/index"})
+    @GetMapping({"/home","/"})
     public String getFrontend() {
-        return "index.html";
+        return "index";
     }
 }

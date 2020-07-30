@@ -46,7 +46,7 @@ minikube service  product-tracker-app
 
 ##### Endpoints
 
-http://localhost:8080/     <For Healthcheck>
+http://localhost:8082/product-app/api/     <For Healthcheck>
 
 **GET /product**
 
@@ -70,4 +70,4 @@ Example: GET /product?type=subscription&max_price=1000&city=Stockholm
 
 mvn spring-boot:run
 
-localhost:8080/home
+http://localhost:8082/product-app/
