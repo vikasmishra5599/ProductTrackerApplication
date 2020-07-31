@@ -5,7 +5,7 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './components/App';
 
 ReactDOM.render(
-    <BrowserRouter basename="/product-tracker">
+    <BrowserRouter basename="/product-app">
         <App/>
     </BrowserRouter>
     ,
