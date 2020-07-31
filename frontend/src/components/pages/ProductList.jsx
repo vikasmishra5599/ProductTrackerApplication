@@ -4,8 +4,7 @@ const ProductList = React.memo(() => {
     const [products, setProducts] = useState([{id: '', type: '', color: '', gblimit: '', price: '', address: ''}])
 
     useEffect(() => {
-        fetch('/api/product', {
-            dataType: 'json',
+        fetch('/product-app/api/product', {
             method: 'GET'
         }).then(response => {
             return response.json()
