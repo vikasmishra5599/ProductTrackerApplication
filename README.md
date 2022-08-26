@@ -71,3 +71,8 @@ Example: GET /product?type=subscription&max_price=1000&city=Stockholm
 mvn spring-boot:run
 
 http://localhost:8082/product-app/
+
+
+Note
+
+DB needs to be explicity installed with table and column provided
