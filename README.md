@@ -6,6 +6,7 @@ Prerequisite
 1. JDK14
 2. Maven
 3. Docker
+4. H2 (In memory Db with JPA)
 
 ### Build Application
 mvn clean install
@@ -75,4 +76,4 @@ http://localhost:8082/product-app/
 
 Note
 
-DB needs to be explicity installed with table and column provided
+It is using in memory DB H2
