@@ -10,20 +10,21 @@ Prerequisite
 
 ### Build Application
 
+```
 mvn clean install
-
+```
 ### Running from maven
-
+```
 mvn spring-boot:run
-
+```
 ### Build docker image
-
+```
 docker build . --tag product-tracker-app:1.0
-
+```
 ### Run an image
-
+```
 docker run -p 8080:8080 product-tracker-app:1.0
-
+```
 
 ##### In case, maven is not installed, we can run app directly from docker:: 
 
@@ -36,14 +37,15 @@ docker run -it --rm --name tracker-app -p 8080:8080 -v "$PWD":/usr/src/app  -v "
 Have uploaded docker image to dockerhub  (https://hub.docker.com/repository/docker/vikas5misra/spring-boot-rest-api)
 
 **Create deployment**
-
+```
 kubectl apply -f deploy/deployment.yml
 
 kubectl get deployments
-
+```
 
 **Create service**
 
+```
 kubectl apply -f deploy/service.yml
 
 kubectl get services
@@ -55,6 +57,7 @@ kubectl get pods
 kubectl expose deployment product-tracker-app --type=LoadBalancer --port=8080
 
 minikube service  product-tracker-app
+```
 
 ##### Endpoints
 
